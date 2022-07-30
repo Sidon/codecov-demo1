@@ -1,15 +1,26 @@
 from flask import (
     Flask,
     request,
+    jsonify,
+    abort,
+    make_response
 )
+from api import create_app
 
-from calculator import Calculator
+from api.calculator import Calculator
 
-app = Flask(__name__)
+app = create_app()
+
+
+@app.route('/healthcheck', methods=['get'])
+def health():
+    return "It's ok!"
+
 
 @app.route('/api/add', methods=['POST'])
 def add():
     return operation('add', 2)
+
 
 @app.route('/api/subtract', methods=['POST'])
 def subtract():
@@ -19,9 +30,11 @@ def subtract():
 def multiply():
     return operation('multiply', 2)
 
+
 @app.route('/api/divide', methods=['POST'])
 def divide():
     return operation('divide', 2)
+
 
 def operation(method, num_factors):
     factors = []

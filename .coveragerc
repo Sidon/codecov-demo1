@@ -5,7 +5,8 @@ directory = htmlcov
 show_missing = True
 omit =
     tests/*
-    */__init__.py
+    # */__init__.py
+
 
 # Regexes for lines to exclude from consideration
 exclude_lines =
@@ -24,3 +25,4 @@ exclude_lines =
     async def get_channel
 
     async def get_connection
+
