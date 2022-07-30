@@ -1,5 +1,9 @@
 def test_health(client):
-    msg = client.get('/healthcheck')
+    check = client.get('/healthcheck')
+    assert check.status == '200 OK'
+    assert check.data == b"It's ok!"
+
+
 
 
 

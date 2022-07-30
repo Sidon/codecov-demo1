@@ -1,15 +1,16 @@
 import pytest
-from api import create_app
+from api import calc_app, create_app
 
 
 @pytest.fixture
 def app():
 
-    app = create_app({
+    test_app = create_app({
         'TESTING': True,
     })
 
-    yield app
+    test_app = calc_app.create_calculator(test_app)
+    yield test_app
 
 
 @pytest.fixture
