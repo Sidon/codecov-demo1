@@ -52,6 +52,23 @@ def test_divide(client):
     assert response.data == b'2.0'
 
 
+def test_divide_by_zero(client):
+    mimetype = 'application/json'
+    headers = {
+        'Content-Type': mimetype,
+        'Accept': mimetype
+    }
+    data = {
+        'x': 4,
+        'y': 0,
+    }
+    url = '/api/divide'
+    response = client.post(url, data=json.dumps(data), headers=headers)
+    assert response.data == b'Cannot divide by 0'
+
+
+
+
 def test_multiply(client):
     mimetype = 'application/json'
     headers = {
